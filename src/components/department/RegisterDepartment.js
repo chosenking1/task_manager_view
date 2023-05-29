@@ -10,7 +10,7 @@ const RegisterDepartment = () => {
     const token = localStorage.getItem('token');
 
     axios
-      .post('/api/department', { dept_name }, {
+      .post('http://localhost:8000/api/department', { dept_name }, {
         headers: {
           Accept: 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',

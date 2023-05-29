@@ -135,6 +135,7 @@ function ApproveTask() {
     fetchTask();
   }, [id, navigate]);
 console.log('sending..', task)
+
  const handleApprove = () => {
   const token = localStorage.getItem('token');
 
@@ -142,7 +143,7 @@ console.log('sending..', task)
       ...task,
       approved: 1 };
   axios
-    .patch(`/api/task/${id}`, updatedTask, {
+    .patch(`http://localhost:8000/api/task/${id}`, updatedTask, {
       headers: {
         Accept: 'application/vnd.api+json',
         'Content-Type': 'application/vnd.api+json',
