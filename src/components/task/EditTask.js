@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import apiUrl from '../../apiConfig';
 
 function EditTask() {
   const { id } = useParams();
@@ -9,11 +10,12 @@ function EditTask() {
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
   const navigate = useNavigate();
+  axios.defaults.baseURL = apiUrl;
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     axios
-      .get(`http://localhost:8000/api/task/${id}`, {
+      .get(`/api/task/${id}`, {
         headers: {
           Accept: 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',
@@ -41,7 +43,7 @@ function EditTask() {
       status
     };
     axios
-      .patch(`http://localhost:8000/api/task/${id}`, updatedTask, {
+      .patch(`/api/task/${id}`, updatedTask, {
         headers: {
           Accept: 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',

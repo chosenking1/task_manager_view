@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import apiUrl from '../../apiConfig';
 
 const CreateTask = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
+  axios.defaults.baseURL = apiUrl;
 
   const handleCreateTask = (e) => {
     e.preventDefault();
@@ -15,7 +17,7 @@ const CreateTask = () => {
       description,
     };
     axios
-      .post(`http://localhost:8000/api/task`, createdTask, {
+      .post(`/api/task`, createdTask, {
         headers: {
           Accept: 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
+import apiUrl from '../../apiConfig';
 
 
 function ViewStaffTask() {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
+  axios.defaults.baseURL = apiUrl;
 
   useEffect(() => {
     fetchStaffTasks();
@@ -17,7 +19,7 @@ function ViewStaffTask() {
     const token = localStorage.getItem('token');
 
     axios
-      .get('http://localhost:8000/api/task', {
+      .get('/api/task', {
         headers: {
           'Accept': 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',

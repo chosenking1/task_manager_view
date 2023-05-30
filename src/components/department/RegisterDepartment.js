@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import apiUrl from '../../apiConfig';
+
 
 const RegisterDepartment = () => {
   const [dept_name, setDept_name] = useState('');
+  axios.defaults.baseURL = apiUrl;
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -10,7 +13,7 @@ const RegisterDepartment = () => {
     const token = localStorage.getItem('token');
 
     axios
-      .post('http://localhost:8000/api/department', { dept_name }, {
+      .post('/api/department', { dept_name }, {
         headers: {
           Accept: 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',

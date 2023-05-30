@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from './styles.css';
-import {useNavigate, useParams, } from "react-router-dom";
+import apiUrl from '../../apiConfig';
+import {useNavigate,} from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
@@ -11,22 +12,29 @@ function AuthContainer() {
   const [gender, setGender] = useState("");
   const [user_role, setUser_role] = useState("");
   const navigate = useNavigate();
-
+ axios.defaults.baseURL = apiUrl;
   useEffect(() => {
     fetchDepartments();
   }, []);
 
-  const fetchDepartments = () => {
-    axios
-      .get('http://localhost:8000/api/department')
-      .then((response) => {
-        console.log(response.data)
-        setDepartments(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching departments:", error);
-      });
-  };
+const fetchDepartments = () => {
+  axios
+    .get(`${apiUrl}/api/department/index`,
+        {
+          headers:{
+              'Accept': 'application/vnd.api+json',
+              'Content-Type': 'application/vnd.api+json',
+            }
+        })
+    .then((response) => {
+      console.log(response.data);
+      setDepartments(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching departments:", error);
+    });
+};
+
 
   const toggleSignIn = () => {
     setSignIn(!signIn);
@@ -53,7 +61,7 @@ function AuthContainer() {
     };
 
     axios
-      .post('http://localhost:8000/api/register', userData,
+      .post('/api/register', userData,
           {
             headers:{
               'Accept': 'application/vnd.api+json',
@@ -83,7 +91,7 @@ function AuthContainer() {
 
 
     axios
-      .post('http://localhost:8000/api/login', credentials)
+      .post('/api/login', credentials)
       .then((response) => {
         const token = response.data.data.token;
         localStorage.setItem("token", token);
@@ -186,28 +194,7 @@ function AuthContainer() {
 
   <input type="submit" className="btn" value="Sign up" />
   <p className="social-text">Or Sign up with social platforms</p>
-  {/*<div className="social-media">*/}
-  {/*  <a href="#" className="social-icon">*/}
-  {/*    <i className="fab fa-facebook-f">*/}
-  {/*      <FontAwesomeIcon icon={faFacebookF} />*/}
-  {/*    </i>*/}
-  {/*  </a>*/}
-  {/*  <a href="#" className="social-icon">*/}
-  {/*    <i className="fab fa-twitter">*/}
-  {/*      <FontAwesomeIcon icon={faTwitter} />*/}
-  {/*    </i>*/}
-  {/*  </a>*/}
-  {/*  <a href="#" className="social-icon">*/}
-  {/*    <i className="fab fa-google">*/}
-  {/*      <FontAwesomeIcon icon={faGoogle} />*/}
-  {/*    </i>*/}
-  {/*  </a>*/}
-  {/*  <a href="#" className="social-icon">*/}
-  {/*    <i className="fab fa-linkedin-in">*/}
-  {/*      <FontAwesomeIcon icon={faLinkedinIn} />*/}
-  {/*    </i>*/}
-  {/*  </a>*/}
-  {/*</div>*/}
+
 </form>
 
           </div>

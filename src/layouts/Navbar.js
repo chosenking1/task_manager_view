@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation} from 'react-router-dom';
 import axios from 'axios';
+import apiUrl from '../../apiConfig';
 
 const Navbar = () => {
   const Links = [
@@ -12,7 +13,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const location = useLocation();
+  const location = useLocation();
+  axios.defaults.baseURL = apiUrl;
 
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const Navbar = () => {
     try {
       const token = localStorage.getItem('token');
       // Call the logout API
-      await axios.post('http://localhost:8000/api/logout', null, {
+      await axios.post('/api/logout', null, {
         headers: {
           Accept: 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',

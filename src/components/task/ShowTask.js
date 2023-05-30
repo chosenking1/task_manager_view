@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {useNavigate, useParams, Link,} from "react-router-dom";
+import apiUrl from '../../apiConfig';
 
 function ShowTask() {
     const {id} = useParams();
     const [task, setTask] = useState(null);
     const navigate = useNavigate();
+    axios.defaults.baseURL = apiUrl;
 
   useEffect(() => {
       const token = localStorage.getItem('token');
-      axios.get(`http://localhost:8000/api/task/${id}`,
+      axios.get(`/api/task/${id}`,
           {
               headers: {
                   'Accept': 'application/vnd.api+json',
@@ -28,7 +30,7 @@ function ShowTask() {
  const handleDelete = () => {
     const token = localStorage.getItem('token');
     axios
-      .delete(`http://localhost:8000/api/task/${id}`, {
+      .delete(`/api/task/${id}`, {
         headers: {
           'Accept': 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',
@@ -53,7 +55,7 @@ function ShowTask() {
     };
 
     axios
-      .patch(`http://localhost:8000/api/task/${id}`, updatedTask, {
+      .patch(`/api/task/${id}`, updatedTask, {
         headers: {
           'Accept': 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',
@@ -78,7 +80,7 @@ function ShowTask() {
 
         console.log('Updating task:', updatedTask);
         axios
-      .patch(`http://localhost:8000/api/task/${id}`, updatedTask, {
+      .patch(`/api/task/${id}`, updatedTask, {
         headers: {
           'Accept': 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',
