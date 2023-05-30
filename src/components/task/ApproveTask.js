@@ -165,7 +165,7 @@ const handleReject = () => {
 
   const updatedTask = { ...task, approved: false };
   axios
-    .patch(`/api/task/${id}`, updatedTask, {
+    .patch(`localhost:8000/api/task/${id}`, updatedTask, {
       headers: {
         Accept: 'application/vnd.api+json',
         'Content-Type': 'application/vnd.api+json',
