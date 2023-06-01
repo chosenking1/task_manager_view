@@ -71,7 +71,7 @@ const fetchDepartments = () => {
       .then((response) => {
         const token = response.data.token;
         localStorage.setItem("token", token);
-        navigate('/task');
+        navigate('/');
         // Redirect the user to the dashboard or perform other actions after successful registration
         // Example: history.push('/dashboard');
       })

@@ -59,7 +59,7 @@ const Navbar = () => {
           </div>
 
           {isLoggedIn && (
-            <ul className="ml-4 hidden md:flex">
+            <ul className="bg:green ml-4 hidden md:flex">
               {Links.map((link) => (
                 <li key={link.name} className="text-xl my-1">
                   <a
