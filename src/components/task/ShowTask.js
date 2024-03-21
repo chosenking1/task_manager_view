@@ -103,7 +103,7 @@ function ShowTask() {
         {task && (
           <div>
             <h2 className="text-lg font-bold mb-2 text-white">{task.attributes.name}</h2>
-            <p className="text-gray-700 mb-2">{task.attributes.description}</p>
+            <p className="text-blue-700 mb-2">{task.attributes.description}</p>
             <p
               className={`text-sm font-bold ${
                 task.attributes.status === 'completed' ? 'text-green-500' : 'text-red-500'

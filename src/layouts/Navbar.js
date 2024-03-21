@@ -47,9 +47,12 @@ const Navbar = () => {
     }
   };
 
+  const onToggleMenu = () => {
+    setOpen(!open);
+  };
   return (
-      <div className="shadow-md w-full fixed top-0 left-0">
-      <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
+      <div className="bg-white-100">
+      <nav className="flex justify-between items-center w-[100%]  mx-auto h-[20px] bg-red-200 p-[4%]">
 
           <div className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800">
             <span className="text-3xl text-indigo-600 mr-1 pt-2">
@@ -57,47 +60,15 @@ const Navbar = () => {
             </span>
             Designer
           </div>
+        {/*<div>*/}
+        {/*  <img className="w-16 cursor-pointer" src="https://cdn-icons-png.flaticon.com/512/5968/5968204.png" alt="..."></img>*/}
+        {/*</div>*/}
 
-          {/*{isLoggedIn && (*/}
-          {/*  <ul className="bg-green ml-4 hidden md:flex space-x-4">*/}
-          {/*    {Links.map((link) => (*/}
-          {/*      <li key={link.name} className="text-xl">*/}
-          {/*        <a*/}
-          {/*          href={link.link}*/}
-          {/*          className="text-blue-500 hover:text-gradient-blue-black duration-500"*/}
-          {/*        >*/}
-          {/*          {link.name}*/}
-          {/*        </a>*/}
-          {/*      </li>*/}
-          {/*    ))}*/}
-          {/*    <li>*/}
-          {/*      <button*/}
-          {/*        className="bg-indigo-600 text-white font-[Poppins] py-2 px-6 rounded hover:bg-indigo-400 duration-500"*/}
-          {/*        onClick={handleLogout}*/}
-          {/*      >*/}
-          {/*        Logout*/}
-          {/*      </button>*/}
-          {/*    </li>*/}
-          {/*  </ul>*/}
-          {/*)}*/}
-
-
-        <div
-          onClick={() => setOpen(!open)}
-          className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden"
-        >
-          <ion-icon name={open ? 'close' : 'menu'}></ion-icon>
-        </div>
-
-        {/*<ul*/}
-        {/*  className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in top-20 ${*/}
-        {/*    open ? 'opacity-100 visible' : 'opacity-0 invisible'*/}
-        {/*  }`}*/}
-        {/*>*/}
-         <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ':'top-[-490px]'}`}>
+<div className={`nav-links duration-500 md:static absolute bg-white md:min-h-fit min-h-[60vh] left-0 top-${open ? '9%':'-100%'} md:w-auto  w-full flex items-center px-5`}>
+         <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
           {isLoggedIn &&
             Links.map((link) => (
-              <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
+              <li key={link.name} className="">
                 <a
                   href={link.link}
                   className="text-blue-950 hover:text-emerald-300 hover:underline  duration-500"
@@ -107,18 +78,21 @@ const Navbar = () => {
               </li>
             ))
           }
+ </ul>
+  </div>
           {isLoggedIn && (
-            <li className="md:my-2">
+<div className='flex items-center gap-6'>
               <button
-                className="bg-indigo-600 text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 duration-500"
+                className="bg-[#a6c1ee] text-white px-5 py-2 rounded-full hover:bg-[#87acec]"
                 onClick={handleLogout}
               >
                 Logout
               </button>
-            </li>
+  <ion-icon onclick={onToggleMenu} name={open ? 'close' : 'menu'} className="text-3xl cursor-pointer md:hidden"></ion-icon>
+</div>
           )}
-        </ul>
-      </div>
+
+      </nav>
     </div>
 
   );

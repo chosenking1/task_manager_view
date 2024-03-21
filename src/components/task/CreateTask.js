@@ -38,7 +38,7 @@ const CreateTask = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
+    <div className="flex justify-center items-center h-screen bg-indigo-400">
       <div className="w-full max-w-md bg-gradient-to-b from-blue-800 to-black rounded-lg shadow-lg p-6">
         <h1 className="text-2xl font-bold mb-4 text-white">Create Task</h1>
         <form onSubmit={handleCreateTask}>
